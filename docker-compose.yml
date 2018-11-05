@@ -1,0 +1,27 @@
+version: "2"
+services:
+  server:
+    depends_on:
+      - mysql
+    build: ./server
+    ports:
+      - "8080:8080"
+    container_name: serverTurnero_container
+    environment:
+      - PORT=8080
+      - DATABASE_URL=mysql://user:password@mysql:3306/
+    restart: always
+    links:
+      - mysql
+    volumes:
+      - './server/service:/app/service'
+      - './server/turn:/app/turn'
+  mysql:
+    image: mysql
+    container_name: mysql_container
+    ports:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=spuer-key
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
