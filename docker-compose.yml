@@ -25,3 +25,20 @@ services:
       - MYSQL_ROOT_PASSWORD=spuer-key
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
+
+  turnero_frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/code:/code
+    container_name: turnero-frontend
+    ports:
+      - 4200:4200
+    working_dir: /code
+    command: npm run start-docker
+
+  turnero_adminer:
+    image: adminer
+    restart: always
+    container_name: turnero-adminer
+    ports:
+      - 8087:8080
