@@ -1,0 +1,7 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button (click)="clickHeaderLogin.emit(null)">Login</button>
+    <span class="spacer"></span>
+    <fa-icon matToolTip="Usuarios" [icon]="power-off" (click)="clickHeaderLogout.emit(null)" class="icon-header"></fa-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
