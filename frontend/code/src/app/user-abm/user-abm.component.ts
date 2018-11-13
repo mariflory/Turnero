@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from './User';
 import { MatTable } from '@angular/material/table';
-import { MatInput } from '@angular/material/input';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-abm',
@@ -13,9 +13,11 @@ export class UserAbmComponent implements OnInit {
 
   users: User[];
   editing;
-  displayedColumns: string[] = ['username', 'email', 'nombre', 'apellido', 'actions'];
+  displayedColumns: string[] = ['username', 'rol', 'email', 'nombre', 'apellido', 'actions'];
   @ViewChild(MatTable) table: MatTable<any>;
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.users = this.userService.all();
@@ -23,7 +25,7 @@ export class UserAbmComponent implements OnInit {
   }
 
   enableEdit(element) {
-    this.editing[element.id] = new User(element.id, element.username, element.email, element.nombre, element.apellido);
+    this.editing[element.id] = new User(element.id, element.username, element.email, element.nombre, element.apellido, element.rol);
   }
 
   saveEdit(element) {
@@ -45,4 +47,29 @@ export class UserAbmComponent implements OnInit {
   cancelEdit(element) {
     delete this.editing[element.id];
   }
+  newUser() {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+      width: '500px',
+      data: new User()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.users.push(result);
+        this.table.renderRows();
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'app-create-user-dialog',
+  templateUrl: 'create-user-dialog.html',
+})
+export class CreateUserDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<CreateUserDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: User) {}
+
 }

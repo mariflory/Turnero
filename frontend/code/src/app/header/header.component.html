@@ -2,8 +2,8 @@
   <mat-toolbar-row>
     <button mat-button (click)="clickHeaderLogin.emit(null)" class="btn btn-primary">Login</button>
     <span class="spacer"></span>
-    <button mat-button (click)="clickHeaderLogout.emit(null)" class="btn btn-primary">
-      <fa-icon matToolTip="Usuarios" icon="power-off" class="icon-header"></fa-icon>
+    <button mat-button matTooltip="Log out" (click)="clickHeaderLogout.emit(null)" class="btn btn-primary">
+      <fa-icon icon="power-off" class="icon-header"></fa-icon>
     </button>  
   </mat-toolbar-row>
 </mat-toolbar>
