@@ -1,0 +1,10 @@
+
+const USER_TYPE = {USER_PATIENT="1", USER_ADMINISTRATOR="2", USER_DOCTOR="3"};
+const SECRET_KEY="secret";
+const EXPIRING_TIME=7200000;
+
+module.exports = {
+    USER_TYPE,
+    EXPIRING_TIME,
+    SECRET_KEY
+}
