@@ -1,3 +1,81 @@
-<p>
-  user-abm works!
-</p>
+<table #usersTable mat-table [dataSource]="users" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef> Username </th>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="!editing[element.id]"> 
+        {{element.username}}
+      </div>
+      <div *ngIf="editing[element.id]"> 
+        <mat-form-field>
+          <input #prueba matInput [(ngModel)]="editing[element.id].username">
+        </mat-form-field>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div *ngIf="!editing[element.id]"> 
+        {{element.email}}
+      </div>
+      <div *ngIf="editing[element.id]"> 
+        <mat-form-field>
+          <input matInput [(ngModel)]="editing[element.id].email">
+        </mat-form-field>
+      </div> 
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div *ngIf="!editing[element.id]"> 
+        {{element.nombre}}
+      </div>
+      <div *ngIf="editing[element.id]"> 
+        <mat-form-field>
+          <input matInput [(ngModel)]="editing[element.id].nombre">
+        </mat-form-field>
+      </div> 
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef> apellido </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div *ngIf="!editing[element.id]"> 
+        {{element.apellido}}
+      </div>
+      <div *ngIf="editing[element.id]"> 
+        <mat-form-field>
+          <input matInput [(ngModel)]="editing[element.id].apellido">
+        </mat-form-field>
+      </div> 
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element;">
+        <div class="d-flex d-flex-row">
+          <button *ngIf="!editing[element.id]" mat-button (click)="enableEdit(element)" class="btn btn-primary btn-default">
+            <fa-icon icon="edit" size="sm"></fa-icon>
+          </button>
+          <button *ngIf="!editing[element.id]" mat-button (click)="deleteRow(element)" class="btn btn-danger btn-default">
+            <fa-icon icon="trash" size="sm"></fa-icon>
+          </button>
+          <button *ngIf="editing[element.id]" mat-button (click)="saveEdit(editing[element.id])" class="btn btn-success btn-default">
+            <fa-icon icon="save" size="sm"></fa-icon>
+          </button>
+          <button *ngIf="editing[element.id]" mat-button (click)="cancelEdit(element)" class="btn btn-danger btn-default">
+            <fa-icon icon="times" size="sm" ></fa-icon>
+          </button>
+        </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

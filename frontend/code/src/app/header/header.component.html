@@ -1,7 +1,9 @@
-<mat-toolbar>
+<mat-toolbar role="heading" color="primary">
   <mat-toolbar-row>
-    <button mat-button (click)="clickHeaderLogin.emit(null)">Login</button>
+    <button mat-button (click)="clickHeaderLogin.emit(null)" class="btn btn-primary">Login</button>
     <span class="spacer"></span>
-    <fa-icon matToolTip="Usuarios" [icon]="power-off" (click)="clickHeaderLogout.emit(null)" class="icon-header"></fa-icon>
+    <button mat-button (click)="clickHeaderLogout.emit(null)" class="btn btn-primary">
+      <fa-icon matToolTip="Usuarios" icon="power-off" class="icon-header"></fa-icon>
+    </button>  
   </mat-toolbar-row>
 </mat-toolbar>
