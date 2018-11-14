@@ -14,8 +14,12 @@ services:
     links:
       - mysql
     volumes:
+      - './server/auth:/app/auth'
+      - './server/connection:/app/connection'
+      - './server/others:/app/others'
       - './server/service:/app/service'
       - './server/turn:/app/turn'
+      - './server/user:/app/user'
   mysql:
     image: mysql
     container_name: mysql_container
