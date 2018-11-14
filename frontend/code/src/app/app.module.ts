@@ -6,7 +6,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faUserInjured, faPowerOff, faEdit, faSave,
+  faTrash, faTimes, faPlus, faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -22,9 +23,10 @@ import { UserAbmComponent, CreateUserDialogComponent } from './user-abm/user-abm
 import { MainViewComponent } from './main-view/main-view.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VisualizadorTurnosComponent } from './visualizador-turnos/visualizador-turnos.component';
 
 // Font awesome icons
-library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus);
+library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus, faClipboard);
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     MainViewComponent,
     LoginDialogComponent,
     HeaderComponent,
-    CreateUserDialogComponent
+    CreateUserDialogComponent,
+    VisualizadorTurnosComponent
   ],
   imports: [
     BrowserModule,

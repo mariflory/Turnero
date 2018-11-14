@@ -1,0 +1,47 @@
+<table #turnosTable mat-table [dataSource]="turnos" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="horario">
+    <th mat-header-cell *matHeaderCellDef> Horario </th>
+    <td mat-cell *matCellDef="let element">
+      <div> 
+        {{element.inicio}}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="duracion">
+    <th mat-header-cell *matHeaderCellDef> Duracion </th>
+    <td mat-cell *matCellDef="let element">
+      <div> 
+        {{element.duracion}}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="doctor">
+    <th mat-header-cell *matHeaderCellDef> Doctor </th>
+    <td mat-cell *matCellDef="let element">
+      <div> 
+        {{element.medico.nombre}}
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="paciente">
+    <th mat-header-cell *matHeaderCellDef> Paciente </th>
+    <td mat-cell *matCellDef="let element">
+      <div> 
+        {{element.paciente.nombre}}
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<button mat-button matTooltip="Crear turno" 
+  matTooltipPosition="left" (click)="nuevoTurno()" 
+  class="btn btn-success btn-circle btn-xl fixed-bottom-right">
+  <fa-icon icon="plus" size="xl" ></fa-icon>
+</button>
