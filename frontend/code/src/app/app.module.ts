@@ -17,10 +17,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 
-import { AppComponent } from './app.component';
+import { AppComponent, LoginDialogComponent } from './app.component';
 import { UserAbmComponent, CreateUserDialogComponent } from './user-abm/user-abm.component';
 import { MainViewComponent } from './main-view/main-view.component';
-import { LoginModalComponent } from './login-modal/login-modal.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,7 +31,7 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     AppComponent,
     UserAbmComponent,
     MainViewComponent,
-    LoginModalComponent,
+    LoginDialogComponent,
     HeaderComponent,
     CreateUserDialogComponent
   ],
@@ -52,7 +51,8 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     MatSelectModule
   ],
   entryComponents: [
-    CreateUserDialogComponent
+    CreateUserDialogComponent,
+    LoginDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

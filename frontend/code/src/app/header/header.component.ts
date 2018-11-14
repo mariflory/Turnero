@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   @Output() clickHeaderLogin: EventEmitter<any> = new EventEmitter();
   @Output() clickHeaderLogout: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit() {
   }
