@@ -9,10 +9,10 @@
     "start": "node service/server.js"
   },
   "dependencies": {
-    "express": "^4.16.1",
+    "express": "^4.16.4",
     "promise-mysql": "^3.3.1",
     "body-parser": "^1.18.3",
-    "jwt": "^0.2.0",
+    "jsonwebtoken": "^8.3.0",
     "bcryptjs": "^2.4.3",
     "uuid": "^3.3.2",
     "cors": "^2.8.4",
