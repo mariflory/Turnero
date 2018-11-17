@@ -18,6 +18,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 
+import {routing}        from './app.routing';
+import { RegisterComponent } from './register/index';
+
 import { AppComponent, LoginDialogComponent } from './app.component';
 import { UserAbmComponent, CreateUserDialogComponent } from './user-abm/user-abm.component';
 import { MainViewComponent } from './main-view/main-view.component';
@@ -36,7 +39,8 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     LoginDialogComponent,
     HeaderComponent,
     CreateUserDialogComponent,
-    VisualizadorTurnosComponent
+    VisualizadorTurnosComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    routing
   ],
   entryComponents: [
     CreateUserDialogComponent,
