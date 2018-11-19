@@ -23,7 +23,10 @@ import { UserAbmComponent, CreateUserDialogComponent } from './user-abm/user-abm
 import { MainViewComponent } from './main-view/main-view.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { VisualizadorTurnosComponent } from './visualizador-turnos/visualizador-turnos.component';
+import {
+  CreateTurnDialogComponent,
+  VisualizadorTurnosComponent
+} from './visualizador-turnos/visualizador-turnos.component';
 
 // Font awesome icons
 library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus, faClipboard);
@@ -36,6 +39,7 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     LoginDialogComponent,
     HeaderComponent,
     CreateUserDialogComponent,
+    CreateTurnDialogComponent,
     VisualizadorTurnosComponent
   ],
   imports: [
@@ -55,6 +59,7 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
   ],
   entryComponents: [
     CreateUserDialogComponent,
+    CreateTurnDialogComponent,
     LoginDialogComponent
   ],
   providers: [],
