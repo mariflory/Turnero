@@ -55,6 +55,7 @@ export class UserAbmComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
         this.users.push(result);
         this.table.renderRows();
       }

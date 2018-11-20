@@ -30,4 +30,8 @@ export class AuthService {
     console.log(this.storeService);
     return ;
   }
+
+  getUser() {
+    return this.storeService.user;
+  }
 }
