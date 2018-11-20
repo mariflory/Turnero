@@ -25,10 +25,17 @@ export class AuthService {
      * mmmm
      */ 
     this.router.navigate(['/home']);
+    
     //localStorage.setItem('currentUser', JSON.stringify(user));
 
     console.log(this.storeService);
     return ;
+  }
+
+  logout(){
+    this.storeService.loggedIn = false;
+    this.storeService.user = {};
+    this.router.navigate(['/init']);
   }
 
   getUser() {

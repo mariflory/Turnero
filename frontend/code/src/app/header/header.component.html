@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <button mat-button *ngIf="!storeService.loggedIn" (click)="clickHeaderLogin.emit(null)" class="btn btn-primary">Login</button>
     <span class="spacer"></span>
-    <button mat-button *ngIf="storeService.loggedIn" matTooltip="Log out" (click)="storeService.loggedIn = false" class="btn btn-primary">
+    <button mat-button *ngIf="storeService.loggedIn" matTooltip="Log out" (click)="clickHeaderLogout.emit(null)" class="btn btn-primary">
       <fa-icon icon="power-off" class="icon-header"></fa-icon>
     </button>  
   </mat-toolbar-row>

@@ -24,6 +24,12 @@ export class AppComponent {
       }
     });
   }
+
+  openLogout() {
+    this.authService.logout();
+  }
+
+
 }
 
 @Component({
