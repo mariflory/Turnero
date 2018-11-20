@@ -4,7 +4,7 @@
     <th mat-header-cell *matHeaderCellDef> Horario </th>
     <td mat-cell *matCellDef="let element">
       <div> 
-        {{element.inicio}}
+        {{element.inicio | date: 'dd/MM/yyyy hh:mm:ss'}}
       </div>
     </td>
   </ng-container>

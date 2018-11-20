@@ -1,21 +1,38 @@
 import { Injectable } from '@angular/core';
 import { User } from './user-abm/User';
+import { Medico } from './visualizador-turnos/Medico';
+import { Paciente } from './Paciente';
+
+const USERS = [
+  new User(1, 'lrodriguez', 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador'),
+  new Medico(2, 'lgaldames', 'lgaldames@gmail.com', 'leonardo', 'galdames', 'Traumatología', 15),
+  new User(3, 'mrusconi', 'mrusconi@gmail.com', 'maria', 'rusconi', 'Administrador'),
+  new User(4, 'rjimenez', 'rjimenez@gmail.com', 'ruben', 'jimenez', 'Asistente'),
+  new Medico(5, 'nlercari', 'nlercari@gmail.com', 'nicolas', 'lercari', 'Kinesiología', 30),
+  new Paciente(6, 'jperez', 'jperez@gmail.com', 'juan', 'perez', '12345678'),
+];
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   constructor() { }
 
   all(): User[] {
-    const users = [];
-    users.push( new User(1, 'lrodriguez', 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador') );
-    users.push( new User(2, 'lgaldames', 'lgaldames@gmail.com', 'leonardo', 'galdames', 'Medico') );
-    users.push( new User(3, 'mrusconi', 'mrusconi@gmail.com', 'maria', 'rusconi', 'Administrador') );
-    users.push( new User(4, 'rjimenez', 'rjimenez@gmail.com', 'ruben', 'jimenez', 'Asistente') );
-    users.push( new User(5, 'nlercari', 'nlercari@gmail.com', 'nicolas', 'lercari', 'Asistente') );
-    return users;
+    console.log(USERS);
+    return USERS.filter(user => user.rol !== 'Paciente');
+  }
+
+  allMedicos(): Medico[] {
+    console.log(USERS.filter(user => user.rol === 'Medico') as Medico[]);
+    return USERS.filter(user => user.rol === 'Medico') as Medico[];
+  }
+
+  getUser(username: string): User {
+    console.log(USERS.find(user => user.username === username));
+    return USERS.find(user => user.username === username);
   }
 }
 

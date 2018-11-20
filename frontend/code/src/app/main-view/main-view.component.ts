@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-main-view',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private storeService: StoreService,
+  ) { }
 
   ngOnInit() {
+    if (!this.storeService.user) {
+      this.router.navigate(['/init']);
+    }
   }
 
 }

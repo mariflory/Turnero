@@ -1,37 +1,25 @@
-<mat-form-field>
+<mat-form-field style="width: 100%">
   <mat-select placeholder="Medico" [(ngModel)]="data.medico" >
-    <mat-option *ngFor="let medico of medicos" [value]="medico.value" >
-      {{medico.value.nombre + ' - ' + medico.value.especialidad}}
+    <mat-option *ngFor="let medico of medicos" [value]="medico" >
+      {{medico.nombre}} {{medico.apellido}} - {{medico.especialidad}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+<br>
 
-<form name="myForm" ng-controller="DateController as dateCtrl">
-  <label for="exampleInput">Pick a date for turn:</label>
-  <input type="datetime-local" id="exampleInput" name="input" [(ngModel)]="data.inicio"
-         placeholder="yyyy-MM-ddTHH:mm:ss" required />
-  <div role="alert">
-    <span class="error" ng-show="myForm.input.$error.required">
-        Required!</span>
-    <span class="error" ng-show="myForm.input.$error.datetimelocal">
-        Not a valid date!</span>
-  </div>
+<div class="d-flex d-flex-row align-items-center">
+  <mat-form-field class="mr-auto">
+    <input matInput [matDatepicker]="picker" placeholder="Fecha" [value]="date.value">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-</form>
-
-<mat-form-field style="width:100%">
-  <input type="number" matInput placeholder="Duracion" [(ngModel)]="data.duracion" cdkFocusInitial>
-</mat-form-field>
-
+  <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+</div>
 
 <div mat-dialog-actions class="justify-content-end">
   <div>
     <button mat-button mat-dialog-close class="btn btn-light">Cancelar</button>
-    <button mat-button [mat-dialog-close]="data" class="btn btn-primary">Solicitar Turno</button>
+    <button mat-button (click)="close()" class="btn btn-primary">Solicitar Turno</button>
   </div>
 </div>
-
-
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

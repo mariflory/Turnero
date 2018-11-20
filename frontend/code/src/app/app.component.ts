@@ -17,12 +17,6 @@ export class AppComponent {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       width: '500px'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.authService.login(result.username, result.password);
-      }
-    });
   }
 
   openLogout() {
@@ -41,6 +35,13 @@ export class LoginDialogComponent {
   username = '';
   password = '';
   constructor(
-    public dialogRef: MatDialogRef<LoginDialogComponent>) {}
+    public dialogRef: MatDialogRef<LoginDialogComponent>,
+    private authService: AuthService) {}
 
+  attemptLogin(): void {
+    const user = this.authService.login(this.username, this.password);
+    if (user) {
+      this.dialogRef.close(user);
+    }
+  }
 }

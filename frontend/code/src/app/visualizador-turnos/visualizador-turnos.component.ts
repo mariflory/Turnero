@@ -1,12 +1,14 @@
-import {Component, OnInit, Input, ViewChild, Inject} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import { Turno } from './Turno';
 import { TurnosService } from '../turnos.service';
 import { MatTable } from '@angular/material/table';
 import { UserService } from '../user.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import {User} from '../user-abm/User';
-import {Medico} from "./Medico";
+import { User } from '../user-abm/User';
+import { Medico } from './Medico';
 import { AuthService } from '../auth.service';
+import { FormControl } from '@angular/forms';
+import { StoreService } from '../store.service';
 
 
 @Component({
@@ -22,7 +24,12 @@ export class VisualizadorTurnosComponent implements OnInit {
   medicos: any;
   displayedColumns: string[] = ['horario', 'duracion', 'doctor', 'paciente'];
   @ViewChild(MatTable) table: MatTable<any>;
-  constructor(public authService: AuthService, private turnosService: TurnosService, private userService: UserService, public dialog: MatDialog) {
+  constructor(
+    public authService: AuthService,
+    private turnosService: TurnosService,
+    private userService: UserService,
+    private storeService: StoreService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -40,37 +47,40 @@ export class VisualizadorTurnosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        const paciente = new User(4, 'rjimenez', 'rjimenez@gmail.com', 'ruben', 'jimenez', 'Paciente');
-        const turno = new Turno(result.inicio, result.duracion, result.medico, paciente)
+        const turno = new Turno(result.inicio, result.duracion, result.medico, this.storeService.user);
         this.turnos.push(turno);
+        this.turnos.sort((a, b) => a.inicio.getTime() - b.inicio.getTime());
         this.table.renderRows();
       }
     });
-  };
+  }
 }
 
 @Component({
   selector: 'app-create-turn-dialog',
   templateUrl: 'create-turn-dialog.html',
 })
-export class CreateTurnDialogComponent {
+export class CreateTurnDialogComponent implements OnInit {
 
-  public selected;
-  public users;
-  public user;
-  public medicos;
+  medicos: Medico[];
+  time = { hour: 0, minute: 30 };
+  date = new FormControl(new Date());
   constructor(
     public dialogRef: MatDialogRef<CreateTurnDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Turno, public userService: UserService, public authService: AuthService) {
-    this.medicos = [
-      { value: new Medico(2, 'lgaldames', 'lgaldames@gmail.com', 'leonardo', 'galdames', 'Traumatología') },
-      { value: new Medico(3, 'nlercari', 'nlercari@gmail.com', 'nicolas', 'lercari', 'Kinesiologo') }
-    ];
-    this.selected = this.medicos[0].value;
-    this.user = this.authService.getUser();
+    @Inject(MAT_DIALOG_DATA) public data: Turno,
+    public userService: UserService,
+    public authService: AuthService) { }
+
+  ngOnInit() {
+    this.medicos = this.userService.allMedicos();
   }
 
-
-
+  close() {
+    this.data.inicio = this.date.value;
+    this.data.inicio.setHours(this.time.hour);
+    this.data.inicio.setMinutes(this.time.minute);
+    this.data.inicio.setSeconds(0);
+    this.data.duracion = this.data.medico.duracionAtencion;
+    this.dialogRef.close(this.data);
+  }
 }
-

@@ -4,6 +4,7 @@ import { StoreService } from './store.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +15,20 @@ export class AuthService {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private storeService: StoreService) { }
+    private storeService: StoreService,
+    private userService: UserService) { }
 
-  login(username, password) {
-    const user = new User(1, 'lrodriguez', 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador');
-    this.storeService.loggedIn = true;
-    this.storeService.user = user;
-
-    /**
-     * mmmm
-     */ 
-    this.router.navigate(['/home']);
-    
-    //localStorage.setItem('currentUser', JSON.stringify(user));
-
-    console.log(this.storeService);
-    return ;
+  login(username, password): User {
+    const user = this.userService.getUser(username);
+    if (user) {
+      this.storeService.loggedIn = true;
+      this.storeService.user = user;
+      this.router.navigate(['/home']);
+      return user;
+    }
   }
 
-  logout(){
+  logout() {
     this.storeService.loggedIn = false;
     this.storeService.user = {};
     this.router.navigate(['/init']);
