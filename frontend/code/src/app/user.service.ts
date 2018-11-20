@@ -21,7 +21,9 @@ export class UserService {
   constructor() { }
 
   addUser(username :string){
-    USERS.push(new User(7, username, 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador'),);
+    var index = USERS.length+1;
+    USERS.push(new User(index, username, 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador'),);
+    console.log(USERS);
   }
 
   all(): User[] {

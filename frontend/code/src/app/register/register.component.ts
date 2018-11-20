@@ -14,6 +14,7 @@ import { UserService } from '../user.service';
 export class RegisterComponent {
     model: any = {};
     loading = false;
+    registerSucess = false;
 
     constructor(private userService: UserService) { }
 
@@ -36,7 +37,8 @@ export class RegisterComponent {
     clear() {
       alert("Registro exitoso");
       this.loading = false;
-      location.reload();
+      this.registerSucess = true;
+      this.model = {};
     }
   
 }
