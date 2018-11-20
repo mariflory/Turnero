@@ -3,7 +3,7 @@ import { User } from './user-abm/User';
 import { Medico } from './visualizador-turnos/Medico';
 import { Paciente } from './Paciente';
 
-const USERS = [
+var USERS = [
   new User(1, 'lrodriguez', 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador'),
   new Medico(2, 'lgaldames', 'lgaldames@gmail.com', 'leonardo', 'galdames', 'Traumatología', 15),
   new User(3, 'mrusconi', 'mrusconi@gmail.com', 'maria', 'rusconi', 'Administrador'),
@@ -19,6 +19,10 @@ const USERS = [
 export class UserService {
 
   constructor() { }
+
+  addUser(username :string){
+    USERS.push(new User(7, username, 'lrodriguez@gmail.com', 'luciano', 'rodriguez', 'Administrador'),);
+  }
 
   all(): User[] {
     console.log(USERS);
