@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faUsers, faUserInjured, faPowerOff, faEdit, faSave,
-  faTrash, faTimes, faPlus, faClipboard
+  faTrash, faTimes, faPlus, faClipboard, faCog
 } from '@fortawesome/free-solid-svg-icons';
 
 import { MatTabsModule } from '@angular/material/tabs';
@@ -34,9 +34,10 @@ import {
   CreateTurnDialogComponent,
   VisualizadorTurnosComponent
 } from './visualizador-turnos/visualizador-turnos.component';
+import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 
 // Font awesome icons
-library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus, faClipboard);
+library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes, faPlus, faClipboard, faCog);
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ library.add(faUsers, faUserInjured, faPowerOff, faEdit, faSave, faTrash, faTimes
     VisualizadorTurnosComponent,
     RegisterComponent,
     CreateTurnDialogComponent,
+    ConfiguracionesComponent,
   ],
   imports: [
     BrowserModule,

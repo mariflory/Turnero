@@ -34,5 +34,10 @@ export class UserService {
     console.log(USERS.find(user => user.username === username));
     return USERS.find(user => user.username === username);
   }
+
+  updateUser(user: User) {
+    const index = USERS.findIndex(u => user.id === u.id );
+    USERS[index] = user;
+  }
 }
 
